@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Capibot AI — Transforma tu negocio con IA</title>
+<meta name="description" content="Optimizamos tus procesos operativos mediante agentes inteligentes diseñados a medida."/>
+<meta name="facebook-domain-verification" content="gv5l05vvb9fslgca9bkhwnpze44xeq" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "outline-variant": "#e2bfb0",
+        "surface-container-low": "#f6f3f2",
+        "on-tertiary-container": "#003357",
+        "on-secondary-fixed-variant": "#783207",
+        "primary-fixed-dim": "#ffb693",
+        "surface-tint": "#a04100",
+        "primary-fixed": "#ffdbcc",
+        "on-secondary": "#ffffff",
+        "surface-container-lowest": "#ffffff",
+        "secondary-container": "#fe9a69",
+        "on-error": "#ffffff",
+        "on-background": "#1c1b1b",
+        "error-container": "#ffdad6",
+        "on-tertiary-fixed": "#001d35",
+        "on-primary-fixed-variant": "#7a3000",
+        "secondary": "#96481e",
+        "on-primary-fixed": "#351000",
+        "on-surface-variant": "#5a4136",
+        "surface-variant": "#e5e2e1",
+        "background": "#fcf9f8",
+        "tertiary-container": "#059eff",
+        "on-primary": "#ffffff",
+        "primary-container": "#ff6b00",
+        "error": "#ba1a1a",
+        "primary": "#a04100",
+        "on-secondary-container": "#763006",
+        "secondary-fixed": "#ffdbcc",
+        "on-tertiary-fixed-variant": "#00497b",
+        "on-surface": "#1c1b1b",
+        "inverse-on-surface": "#f3f0ef",
+        "tertiary-fixed-dim": "#9ccaff",
+        "surface-container-highest": "#e5e2e1",
+        "tertiary": "#0062a1",
+        "on-error-container": "#93000a",
+        "on-secondary-fixed": "#351000",
+        "tertiary-fixed": "#d0e4ff",
+        "inverse-primary": "#ffb693",
+        "surface": "#fcf9f8",
+        "surface-bright": "#fcf9f8",
+        "on-primary-container": "#572000",
+        "secondary-fixed-dim": "#ffb693",
+        "surface-container": "#f0eded",
+        "on-tertiary": "#ffffff",
+        "surface-container-high": "#eae7e7",
+        "surface-dim": "#dcd9d9",
+        "inverse-surface": "#313030",
+        "outline": "#8e7164"
+      },
+      borderRadius: {
+        DEFAULT: "0.125rem",
+        lg: "0.25rem",
+        xl: "0.5rem",
+        full: "0.75rem"
+      },
+      fontFamily: {
+        headline: ["Manrope"],
+        body: ["Manrope"],
+        label: ["Manrope"]
+      }
+    },
+  },
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.kinetic-gradient {
+  background: #c44e00;
+}
+.glass-panel {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(20px);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Chat message animations */
+.chat-msg {
+  opacity: 0;
+  transform: translateY(16px) scale(0.97);
+  transition: opacity 0.4s cubic-bezier(.22,1,.36,1), transform 0.4s cubic-bezier(.22,1,.36,1);
+}
+.chat-msg.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Typing indicator */
+.typing-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #a04100;
+  display: inline-block;
+  animation: typingBounce 1.4s infinite ease-in-out both;
+}
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* Kinetic rail loader */
+.kinetic-rail {
+  height: 2px;
+  background: #e2bfb0;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+.kinetic-rail::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, #a04100, #ff6b00, transparent);
+  border-radius: 2px;
+  animation: railGlow 1.5s ease-in-out infinite;
+  box-shadow: 0 0 8px #ff6b0066;
+}
+@keyframes railGlow {
+  0% { left: -40%; }
+  100% { left: 100%; }
+}
+
+/* Smooth scrollbar */
+.chat-scroll::-webkit-scrollbar { width: 4px; }
+.chat-scroll::-webkit-scrollbar-track { background: transparent; }
+.chat-scroll::-webkit-scrollbar-thumb { background: #e2bfb0; border-radius: 4px; }
+
+/* Hero text stagger */
+.hero-line {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroIn 0.8s cubic-bezier(.22,1,.36,1) forwards;
+}
+.hero-line:nth-child(1) { animation-delay: 0.1s; }
+.hero-line:nth-child(2) { animation-delay: 0.25s; }
+.hero-line:nth-child(3) { animation-delay: 0.4s; }
+.hero-line:nth-child(4) { animation-delay: 0.55s; }
+.hero-line:nth-child(5) { animation-delay: 0.7s; }
+@keyframes heroIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo float */
+.logo-float { animation: floatY 3s ease-in-out infinite; }
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Pulse ring on send button */
+.pulse-ring {
+  position: relative;
+}
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 0.75rem;
+  border: 2px solid #ff6b00;
+  animation: pulseRing 2s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes pulseRing {
+  0% { opacity: 0.6; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.3); }
+}
+
+/* Form success */
+.form-success {
+  animation: successPop 0.5s cubic-bezier(.22,1,.36,1);
+}
+@keyframes successPop {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Stagger cards */
+.card-stagger { transition-delay: calc(var(--i) * 100ms); }
+
+/* Nav scroll */
+nav.scrolled {
+  box-shadow: 0 1px 24px rgba(0,0,0,0.06);
+}
+
+/* Mobile menu */
+.mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(.22,1,.36,1), opacity 0.3s;
+  opacity: 0;
+}
+.mobile-menu.open {
+  max-height: 300px;
+  opacity: 1;
+}
+
+/* Smooth focus for inputs */
+input:focus, textarea:focus {
+  transition: all 0.25s cubic-bezier(.22,1,.36,1);
+}
+
+/* Counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Marquee */
+.marquee-wrapper {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 35s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 2.5rem;
+  color: #a1a1aa;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition: color 0.3s;
+  position: relative;
+}
+.marquee-item::after {
+  content: '·';
+  position: absolute;
+  right: 0;
+  color: #d4d4d8;
+  font-size: 1.5rem;
+}
+.marquee-item:hover { color: #a04100; }
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+</style>
+</head>
+
+<body class="bg-white text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+
+<!-- TopNavBar -->
+<nav id="mainNav" class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md transition-shadow duration-300">
+  <div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+    <a href="#hero" class="logo-float"><img src="capibot-logo.png" alt="Capibot" class="h-12 w-auto"/></a>
+    <div class="hidden md:flex items-center space-x-8">
+      <a class="text-orange-600 font-semibold border-b-2 border-orange-600 tracking-tight" href="#hero">Plataforma</a>
+      <a class="text-zinc-600 font-medium hover:text-orange-600 transition-colors duration-200 tracking-tight" href="#cases">Soluciones</a>
+      <a class="text-zinc-600 font-medium hover:text-orange-600 transition-colors duration-200 tracking-tight" href="#contact">Contacto</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="#contact" class="bg-[#c44e00] text-white px-5 py-2 rounded-xl font-semibold hover:scale-105 active:scale-95 transition-all duration-150 ease-in-out hidden sm:inline-block">Cotizar</a>
+      <button id="menuToggle" class="material-symbols-outlined md:hidden text-zinc-900 cursor-pointer select-none" aria-label="Toggle menu">menu</button>
+    </div>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="mobile-menu md:hidden bg-white/95 backdrop-blur-md px-6">
+    <div class="flex flex-col gap-4 py-4">
+      <a class="text-zinc-700 font-medium py-2" href="#hero" onclick="closeMobile()">Plataforma</a>
+      <a class="text-zinc-700 font-medium py-2" href="#cases" onclick="closeMobile()">Soluciones</a>
+      <a class="text-zinc-700 font-medium py-2" href="#contact" onclick="closeMobile()">Contacto</a>
+      <a href="#contact" class="bg-primary-container text-white text-center px-5 py-3 rounded-xl font-semibold" onclick="closeMobile()">Cotizar</a>
+    </div>
+  </div>
+</nav>
+
+<main class="pt-24">
+
+<!-- Hero Section -->
+<section id="hero" class="max-w-7xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
+  <div class="space-y-8">
+    <div class="hero-line inline-flex items-center px-3 py-1 rounded-full bg-surface-container-low text-primary text-xs font-bold tracking-widest uppercase">
+      Innovación IA
+    </div>
+    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.1] text-zinc-900">
+      <span class="hero-line block">Transforma tu</span>
+      <span class="hero-line block">negocio con <span class="text-primary-container">IA</span></span>
+      <span class="hero-line block">y Automatización</span>
+    </h1>
+    <p class="hero-line text-lg text-on-surface-variant max-w-lg leading-relaxed">
+      Optimizamos tus procesos operativos mediante agentes inteligentes diseñados a medida. Impulsa la productividad de tu equipo hoy mismo.
+    </p>
+    <div class="hero-line flex flex-wrap gap-4">
+      <a href="#contact" class="kinetic-gradient text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:translate-y-[-2px] transition-transform shadow-lg shadow-primary-container/20">
+        Comenzar
+        <span class="material-symbols-outlined">arrow_forward</span>
+      </a>
+      <a href="#cases" class="bg-white border-outline-variant/30 border px-8 py-4 rounded-xl font-bold text-on-surface hover:bg-surface-container-low transition-colors">
+        Ver Soluciones
+      </a>
+    </div>
+  </div>
+
+  <!-- Chatbot Demo Interface -->
+  <div class="relative">
+    <div id="chatContainer" class="bg-surface-container-low rounded-3xl p-6 border border-zinc-200/50 shadow-2xl transition-shadow duration-500 hover:shadow-3xl">
+      <!-- Chat Header -->
+      <div class="flex items-center gap-3 mb-4 pb-4 border-b border-zinc-200/50">
+        <div class="w-10 h-10 rounded-full kinetic-gradient flex items-center justify-center text-white">
+          <span class="material-symbols-outlined">smart_toy</span>
+        </div>
+        <div class="flex-1">
+          <p class="font-bold text-zinc-900 leading-none">Capibot AI</p>
+          <p class="text-xs text-zinc-500 flex items-center gap-1">
+            <span id="statusDot" class="inline-block w-2 h-2 rounded-full bg-green-400"></span>
+            <span id="statusText">En línea</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Chat Messages -->
+      <div id="chatMessages" class="space-y-3 mb-4 h-[300px] overflow-y-auto pr-2 chat-scroll scroll-smooth">
+        <!-- Messages injected by JS -->
+      </div>
+
+      <!-- Typing indicator (hidden initially) -->
+      <div id="typingIndicator" class="hidden mb-3">
+        <div class="flex justify-start">
+          <div class="bg-white border border-zinc-200 px-4 py-3 rounded-2xl rounded-tl-none inline-flex gap-1.5 items-center">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Input -->
+      <div class="flex gap-2">
+        <div class="flex-1 relative">
+          <input
+            id="chatInput"
+            type="text"
+            class="w-full bg-white border border-zinc-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all placeholder:text-zinc-400"
+            placeholder="Escribe tu mensaje..."
+            autocomplete="off"
+          />
+        </div>
+        <button id="chatSend" class="w-12 h-12 rounded-xl kinetic-gradient flex items-center justify-center text-white shadow-md hover:scale-105 active:scale-95 transition-all pulse-ring">
+          <span class="material-symbols-outlined">send</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Decorative blurs -->
+    <div class="absolute -z-10 -top-12 -right-12 w-64 h-64 bg-primary-container/10 blur-[100px] rounded-full"></div>
+    <div class="absolute -z-10 -bottom-12 -left-12 w-64 h-64 bg-tertiary-container/10 blur-[100px] rounded-full"></div>
+  </div>
+</section>
+
+<!-- Tech Stack Marquee -->
+<section class="bg-surface-container-low py-12 reveal overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    <p class="text-center text-xs font-bold uppercase tracking-widest text-zinc-400 mb-10">Modelos de IA e integraciones que utilizamos</p>
+  </div>
+  <div class="marquee-wrapper">
+    <div class="marquee-track">
+      <span class="marquee-item">OpenAI</span>
+      <span class="marquee-item">Claude</span>
+      <span class="marquee-item">Gemini</span>
+      <span class="marquee-item">LLaMA</span>
+      <span class="marquee-item">Mistral</span>
+      <span class="marquee-item">Whisper</span>
+      <span class="marquee-item">Salesforce</span>
+      <span class="marquee-item">HubSpot</span>
+      <span class="marquee-item">Slack</span>
+      <span class="marquee-item">Notion</span>
+      <span class="marquee-item">Stripe</span>
+      <span class="marquee-item">WhatsApp API</span>
+      <span class="marquee-item">Google Cloud</span>
+      <span class="marquee-item">AWS</span>
+      <span class="marquee-item">Zapier</span>
+      <span class="marquee-item">Make</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="marquee-item">OpenAI</span>
+      <span class="marquee-item">Claude</span>
+      <span class="marquee-item">Gemini</span>
+      <span class="marquee-item">LLaMA</span>
+      <span class="marquee-item">Mistral</span>
+      <span class="marquee-item">Whisper</span>
+      <span class="marquee-item">Salesforce</span>
+      <span class="marquee-item">HubSpot</span>
+      <span class="marquee-item">Slack</span>
+      <span class="marquee-item">Notion</span>
+      <span class="marquee-item">Stripe</span>
+      <span class="marquee-item">WhatsApp API</span>
+      <span class="marquee-item">Google Cloud</span>
+      <span class="marquee-item">AWS</span>
+      <span class="marquee-item">Zapier</span>
+      <span class="marquee-item">Make</span>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+  <div class="text-center mb-16 reveal">
+    <p class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Proceso</p>
+    <h2 class="text-4xl font-extrabold tracking-tighter text-zinc-900 mb-4">De la idea al impacto en 3 pasos</h2>
+    <p class="text-on-surface-variant text-lg max-w-2xl mx-auto">No necesitas un equipo de ingeniería. Nosotros nos encargamos de todo — tú solo defines el problema.</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+    <!-- Step 1 -->
+    <div class="relative text-center group">
+      <div class="w-16 h-16 mx-auto rounded-2xl bg-orange-50 flex items-center justify-center text-primary-container mb-6 group-hover:scale-110 transition-transform">
+        <span class="material-symbols-outlined text-3xl">hearing</span>
+      </div>
+      <div class="absolute top-8 left-[60%] w-[80%] h-px bg-zinc-200 hidden md:block"></div>
+      <p class="text-xs font-bold uppercase tracking-widest text-primary-container mb-2">Paso 01</p>
+      <h3 class="text-xl font-bold text-zinc-900 mb-2">Diagnóstico</h3>
+      <p class="text-zinc-500 text-sm leading-relaxed">Mapeamos tus procesos actuales, identificamos cuellos de botella y definimos las métricas de éxito junto a tu equipo.</p>
+    </div>
+    <!-- Step 2 -->
+    <div class="relative text-center group">
+      <div class="w-16 h-16 mx-auto rounded-2xl bg-orange-50 flex items-center justify-center text-primary-container mb-6 group-hover:scale-110 transition-transform">
+        <span class="material-symbols-outlined text-3xl">construction</span>
+      </div>
+      <div class="absolute top-8 left-[60%] w-[80%] h-px bg-zinc-200 hidden md:block"></div>
+      <p class="text-xs font-bold uppercase tracking-widest text-primary-container mb-2">Paso 02</p>
+      <h3 class="text-xl font-bold text-zinc-900 mb-2">Construcción</h3>
+      <p class="text-zinc-500 text-sm leading-relaxed">Diseñamos, entrenamos y desplegamos tu agente de IA con integraciones a tus herramientas. Iteramos contigo en sprints de 1 semana.</p>
+    </div>
+    <!-- Step 3 -->
+    <div class="relative text-center group">
+      <div class="w-16 h-16 mx-auto rounded-2xl bg-orange-50 flex items-center justify-center text-primary-container mb-6 group-hover:scale-110 transition-transform">
+        <span class="material-symbols-outlined text-3xl">rocket_launch</span>
+      </div>
+      <p class="text-xs font-bold uppercase tracking-widest text-primary-container mb-2">Paso 03</p>
+      <h3 class="text-xl font-bold text-zinc-900 mb-2">Lanzamiento y Optimización</h3>
+      <p class="text-zinc-500 text-sm leading-relaxed">Monitoreamos el rendimiento en tiempo real, ajustamos las respuestas del agente y escalamos a nuevos canales según resultados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Banner -->
+<section class="bg-surface-container-low py-16 reveal">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div>
+        <p class="text-4xl md:text-5xl font-extrabold text-primary-container tracking-tight">+120</p>
+        <p class="text-xs font-bold uppercase tracking-widest text-zinc-400 mt-2">Agentes desplegados</p>
+      </div>
+      <div>
+        <p class="text-4xl md:text-5xl font-extrabold text-primary-container tracking-tight">2M+</p>
+        <p class="text-xs font-bold uppercase tracking-widest text-zinc-400 mt-2">Conversaciones / mes</p>
+      </div>
+      <div>
+        <p class="text-4xl md:text-5xl font-extrabold text-primary-container tracking-tight">94%</p>
+        <p class="text-xs font-bold uppercase tracking-widest text-zinc-400 mt-2">Satisfacción del usuario</p>
+      </div>
+      <div>
+        <p class="text-4xl md:text-5xl font-extrabold text-primary-container tracking-tight">&lt;14d</p>
+        <p class="text-xs font-bold uppercase tracking-widest text-zinc-400 mt-2">Tiempo de implementación</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Use Cases Section (Bento Grid) -->
+<section id="cases" class="max-w-7xl mx-auto px-6 py-24">
+  <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal">
+    <div>
+      <p class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Soluciones</p>
+      <h2 class="text-4xl font-extrabold tracking-tighter text-zinc-900 mb-4">Escenarios de Impacto</h2>
+      <p class="text-on-surface-variant text-lg max-w-xl">Cada solución nace de un problema real. Estas son las transformaciones que hemos implementado con equipos como el tuyo.</p>
+    </div>
+    <a href="#contact" class="group flex items-center gap-2 text-primary-container font-bold shrink-0">
+      Agenda una consultoría gratuita
+      <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">chevron_right</span>
+    </a>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+    <!-- Card 1: Soporte Omnicanal (featured, wide) -->
+    <div class="md:col-span-8 bg-white border border-zinc-100 rounded-2xl p-8 shadow-sm group hover:shadow-xl hover:shadow-primary-container/5 transition-all duration-500 reveal card-stagger" style="--i:0">
+      <div class="flex items-center gap-4 mb-6">
+        <div class="h-14 w-14 rounded-xl bg-orange-50 flex items-center justify-center text-primary-container shrink-0">
+          <span class="material-symbols-outlined text-3xl">support_agent</span>
+        </div>
+        <div>
+          <h3 class="text-2xl font-bold text-zinc-900">Soporte Omnicanal 24/7</h3>
+          <p class="text-xs text-primary font-bold uppercase tracking-widest mt-1">E-commerce · +50K tickets/mes</p>
+        </div>
+      </div>
+      <p class="text-on-surface-variant mb-4">Un retailer recibía miles de consultas repetitivas en WhatsApp, email y web. Su equipo de 12 agentes no daba abasto y el tiempo promedio de primera respuesta superaba las 4 horas.</p>
+      <p class="text-on-surface-variant mb-6">Desplegamos un agente conversacional entrenado con su catálogo, políticas de devolución y FAQ. Hoy resuelve el <strong class="text-zinc-900">83% de tickets sin intervención humana</strong>, y el tiempo de respuesta bajó a <strong class="text-zinc-900">menos de 8 segundos</strong>.</p>
+      <div class="flex flex-wrap gap-6 mb-6">
+        <div class="text-center">
+          <p class="text-3xl font-extrabold text-primary-container">83%</p>
+          <p class="text-xs text-zinc-400 uppercase tracking-widest font-bold mt-1">Resolución autónoma</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl font-extrabold text-primary-container">&lt;8s</p>
+          <p class="text-xs text-zinc-400 uppercase tracking-widest font-bold mt-1">Primera respuesta</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl font-extrabold text-primary-container">-60%</p>
+          <p class="text-xs text-zinc-400 uppercase tracking-widest font-bold mt-1">Costo operativo</p>
+        </div>
+      </div>
+      <!-- Mini visual: channel icons -->
+      <div class="flex items-center gap-3 pt-4 border-t border-zinc-100">
+        <p class="text-xs text-zinc-400 uppercase tracking-widest font-bold">Canales:</p>
+        <span class="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-semibold px-3 py-1 rounded-full"><span class="material-symbols-outlined text-sm">chat</span> WhatsApp</span>
+        <span class="inline-flex items-center gap-1 bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full"><span class="material-symbols-outlined text-sm">mail</span> Email</span>
+        <span class="inline-flex items-center gap-1 bg-purple-50 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full"><span class="material-symbols-outlined text-sm">language</span> Web</span>
+      </div>
+    </div>
+
+    <!-- Card 2: Cobranza -->
+    <div class="md:col-span-4 bg-surface-container-low rounded-2xl p-8 border border-transparent hover:border-orange-200 transition-colors reveal card-stagger" style="--i:1">
+      <div class="h-12 w-12 rounded-xl bg-white flex items-center justify-center text-primary-container mb-6 shadow-sm">
+        <span class="material-symbols-outlined">payments</span>
+      </div>
+      <h3 class="text-xl font-bold text-zinc-900 mb-2">Cobranza Conversacional</h3>
+      <p class="text-xs text-primary font-bold uppercase tracking-widest mb-4">Fintech · Cartera de $2M USD</p>
+      <p class="text-zinc-500 text-sm leading-relaxed mb-4">El agente negocia plazos, envía links de pago personalizados por WhatsApp y escala a humanos solo ante disputas. Sin fricción, sin llamadas molestas.</p>
+      <div class="flex gap-4 mb-4">
+        <div>
+          <p class="text-2xl font-extrabold text-primary-container">+42%</p>
+          <p class="text-[10px] text-zinc-400 uppercase tracking-widest font-bold">Recuperación</p>
+        </div>
+        <div>
+          <p class="text-2xl font-extrabold text-primary-container">3.2x</p>
+          <p class="text-[10px] text-zinc-400 uppercase tracking-widest font-bold">ROI en 90 días</p>
+        </div>
+      </div>
+      <div class="h-px bg-zinc-200/50 mb-4"></div>
+      <p class="text-xs text-zinc-400 italic">"Recuperamos más en el primer mes que lo que costó todo el proyecto." — Dir. Finanzas</p>
+    </div>
+
+    <!-- Card 3: Agenda Inteligente -->
+    <div class="md:col-span-4 bg-white border border-zinc-100 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:shadow-primary-container/5 transition-all duration-500 reveal card-stagger" style="--i:2">
+      <div class="h-12 w-12 rounded-xl bg-orange-50 flex items-center justify-center text-primary-container mb-6">
+        <span class="material-symbols-outlined">calendar_month</span>
+      </div>
+      <h3 class="text-xl font-bold text-zinc-900 mb-2">Calificación y Agenda de Leads</h3>
+      <p class="text-xs text-primary font-bold uppercase tracking-widest mb-4">Consultora B2B · 200+ leads/semana</p>
+      <p class="text-zinc-500 text-sm leading-relaxed mb-4">El agente califica por industria, tamaño y urgencia, y agenda directamente en Google Calendar con el vendedor asignado. Cero idas y vueltas.</p>
+      <div class="flex gap-4">
+        <div>
+          <p class="text-2xl font-extrabold text-primary-container">3x</p>
+          <p class="text-[10px] text-zinc-400 uppercase tracking-widest font-bold">Meetings agendados</p>
+        </div>
+        <div>
+          <p class="text-2xl font-extrabold text-primary-container">11%</p>
+          <p class="text-[10px] text-zinc-400 uppercase tracking-widest font-bold">Tasa de cierre</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4: Integraciones (was dark, now light with gradient accent) -->
+    <div class="md:col-span-4 bg-white border border-zinc-100 rounded-2xl p-8 shadow-sm relative overflow-hidden group hover:shadow-xl hover:shadow-primary-container/5 transition-all duration-500 reveal card-stagger" style="--i:3">
+      <div class="h-12 w-12 rounded-xl bg-orange-50 flex items-center justify-center text-primary-container mb-6">
+        <span class="material-symbols-outlined">hub</span>
+      </div>
+      <h3 class="text-xl font-bold text-zinc-900 mb-2">Integraciones a la Medida</h3>
+      <p class="text-xs text-primary font-bold uppercase tracking-widest mb-4">Sistemas Legacy · APIs · RPAs</p>
+      <p class="text-zinc-500 text-sm leading-relaxed mb-4">¿Tu stack es SAP + Salesforce + un ERP interno de los 2000s? Construimos conectores custom y orquestamos flujos entre sistemas que nunca fueron diseñados para hablar entre sí.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="bg-surface-container-low text-zinc-600 text-xs font-semibold px-3 py-1 rounded-full">REST APIs</span>
+        <span class="bg-surface-container-low text-zinc-600 text-xs font-semibold px-3 py-1 rounded-full">Webhooks</span>
+        <span class="bg-surface-container-low text-zinc-600 text-xs font-semibold px-3 py-1 rounded-full">RPA</span>
+        <span class="bg-surface-container-low text-zinc-600 text-xs font-semibold px-3 py-1 rounded-full">Scraping</span>
+      </div>
+      <a href="#contact" class="text-primary-container font-bold flex items-center gap-2 hover:gap-3 transition-all text-sm">
+        Cuéntanos tu caso
+        <span class="material-symbols-outlined text-sm">east</span>
+      </a>
+      <div class="absolute -bottom-6 -right-6 opacity-5 group-hover:opacity-10 transition-opacity">
+        <span class="material-symbols-outlined text-[140px]">settings_b_roll</span>
+      </div>
+    </div>
+
+    <!-- Card 5: Inteligencia de Datos -->
+    <div class="md:col-span-4 bg-surface-container-low rounded-2xl p-8 border border-transparent hover:border-orange-200 transition-colors reveal card-stagger" style="--i:4">
+      <div class="h-12 w-12 rounded-xl bg-white flex items-center justify-center text-primary-container mb-6 shadow-sm">
+        <span class="material-symbols-outlined">query_stats</span>
+      </div>
+      <h3 class="text-xl font-bold text-zinc-900 mb-2">Inteligencia sobre tus Datos</h3>
+      <p class="text-xs text-primary font-bold uppercase tracking-widest mb-4">Operaciones · 20hrs manuales/semana</p>
+      <p class="text-zinc-500 text-sm leading-relaxed mb-4">El equipo pregunta en lenguaje natural: <em class="text-zinc-700">"¿Cuáles fueron los 10 clientes con mayor churn este trimestre?"</em> y obtiene respuestas con gráficas en segundos.</p>
+      <div class="mb-4">
+        <p class="text-2xl font-extrabold text-primary-container">20hrs &rarr; 0</p>
+        <p class="text-[10px] text-zinc-400 uppercase tracking-widest font-bold">Trabajo manual eliminado / semana</p>
+      </div>
+      <div class="bg-white rounded-lg p-3 border border-zinc-100">
+        <div class="flex items-center gap-2 text-xs text-zinc-400 mb-2">
+          <span class="material-symbols-outlined text-sm text-primary-container">terminal</span>
+          Consulta ejemplo
+        </div>
+        <p class="text-xs text-zinc-600 font-mono">"Muéstrame ventas por región del Q1 vs Q4"</p>
+      </div>
+    </div>
+
+    <!-- Card 6: Onboarding de Empleados (NEW) -->
+    <div class="md:col-span-4 bg-white border border-zinc-100 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:shadow-primary-container/5 transition-all duration-500 reveal card-stagger" style="--i:5">
+      <div class="h-12 w-12 rounded-xl bg-orange-50 flex items-center justify-center text-primary-container mb-6">
+        <span class="material-symbols-outlined">school</span>
+      </div>
+      <h3 class="text-xl font-bold text-zinc-900 mb-2">Onboarding y Capacitación</h3>
+      <p class="text-xs text-primary font-bold uppercase tracking-widest mb-4">RRHH · Empresas de +500 empleados</p>
+      <p class="text-zinc-500 text-sm leading-relaxed mb-4">Nuevo empleado entra el lunes. El agente lo guía paso a paso: documentación, accesos, políticas internas, preguntas frecuentes. Todo conversacional, todo personalizado al rol.</p>
+      <div class="flex gap-4">
+        <div>
+          <p class="text-2xl font-extrabold text-primary-container">-70%</p>
+          <p class="text-[10px] text-zinc-400 uppercase tracking-widest font-bold">Tiempo de onboarding</p>
+        </div>
+        <div>
+          <p class="text-2xl font-extrabold text-primary-container">4.8<span class="text-base">/5</span></p>
+          <p class="text-[10px] text-zinc-400 uppercase tracking-widest font-bold">Satisfacción</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 7: Generación de Contenido (NEW) -->
+    <div class="md:col-span-4 bg-surface-container-low rounded-2xl p-8 border border-transparent hover:border-orange-200 transition-colors reveal card-stagger" style="--i:6">
+      <div class="h-12 w-12 rounded-xl bg-white flex items-center justify-center text-primary-container mb-6 shadow-sm">
+        <span class="material-symbols-outlined">edit_note</span>
+      </div>
+      <h3 class="text-xl font-bold text-zinc-900 mb-2">Generación de Contenido</h3>
+      <p class="text-xs text-primary font-bold uppercase tracking-widest mb-4">Marketing · Agencias y equipos internos</p>
+      <p class="text-zinc-500 text-sm leading-relaxed mb-4">Genera borradores de emails, posts para redes, descripciones de producto y copy para campañas — alineados al tono de tu marca. Tu equipo revisa y publica, no escribe desde cero.</p>
+      <div class="flex gap-4">
+        <div>
+          <p class="text-2xl font-extrabold text-primary-container">5x</p>
+          <p class="text-[10px] text-zinc-400 uppercase tracking-widest font-bold">Velocidad de producción</p>
+        </div>
+        <div>
+          <p class="text-2xl font-extrabold text-primary-container">-80%</p>
+          <p class="text-[10px] text-zinc-400 uppercase tracking-widest font-bold">Tiempo de drafting</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Contact Form Section -->
+<section id="contact" class="bg-surface-container-low py-24">
+  <div class="max-w-4xl mx-auto px-6 text-center reveal">
+    <h2 class="text-4xl font-extrabold tracking-tighter text-zinc-900 mb-6">¿Listo para el siguiente nivel?</h2>
+    <p class="text-on-surface-variant text-lg mb-12">Déjanos tus datos y un consultor de IA se pondrá en contacto contigo en menos de 24 horas.</p>
+
+    <div id="formCard" class="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-zinc-200/50 border border-zinc-100">
+      <form id="contactForm" class="grid grid-cols-1 md:grid-cols-2 gap-5 text-left" novalidate>
+        <!-- Row 1: Name + Email -->
+        <div class="space-y-2">
+          <label class="text-xs font-bold uppercase tracking-widest text-zinc-400 px-1">Nombre Completo</label>
+          <input id="fieldName" class="w-full bg-surface-container-low border border-zinc-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all outline-none" placeholder="Ej. Juan Pérez" type="text" required/>
+          <p class="text-xs text-error hidden" id="errName">Por favor ingresa tu nombre.</p>
+        </div>
+        <div class="space-y-2">
+          <label class="text-xs font-bold uppercase tracking-widest text-zinc-400 px-1">Email Corporativo</label>
+          <input id="fieldEmail" class="w-full bg-surface-container-low border border-zinc-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all outline-none" placeholder="juan@empresa.com" type="email" required/>
+          <p class="text-xs text-error hidden" id="errEmail">Por favor ingresa un email válido.</p>
+        </div>
+        <!-- Row 2: Company + Role -->
+        <div class="space-y-2">
+          <label class="text-xs font-bold uppercase tracking-widest text-zinc-400 px-1">Empresa</label>
+          <input id="fieldCompany" class="w-full bg-surface-container-low border border-zinc-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all outline-none" placeholder="Nombre de tu empresa" type="text" required/>
+          <p class="text-xs text-error hidden" id="errCompany">Por favor ingresa tu empresa.</p>
+        </div>
+        <div class="space-y-2">
+          <label class="text-xs font-bold uppercase tracking-widest text-zinc-400 px-1">Tu Rol</label>
+          <select id="fieldRole" class="w-full bg-surface-container-low border border-zinc-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all outline-none text-zinc-600 appearance-none cursor-pointer">
+            <option value="" disabled selected>Selecciona tu rol</option>
+            <option value="ceo">CEO / Fundador</option>
+            <option value="cto">CTO / Dir. Tecnología</option>
+            <option value="coo">COO / Dir. Operaciones</option>
+            <option value="marketing">Dir. Marketing</option>
+            <option value="ventas">Dir. Comercial / Ventas</option>
+            <option value="producto">Product Manager</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+        <!-- Row 3: Industry + Company Size -->
+        <div class="space-y-2">
+          <label class="text-xs font-bold uppercase tracking-widest text-zinc-400 px-1">Industria</label>
+          <select id="fieldIndustry" class="w-full bg-surface-container-low border border-zinc-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all outline-none text-zinc-600 appearance-none cursor-pointer">
+            <option value="" disabled selected>Selecciona industria</option>
+            <option value="ecommerce">E-commerce / Retail</option>
+            <option value="fintech">Fintech / Servicios Financieros</option>
+            <option value="saas">SaaS / Tecnología</option>
+            <option value="salud">Salud / Healthcare</option>
+            <option value="educacion">Educación</option>
+            <option value="inmobiliaria">Inmobiliaria</option>
+            <option value="manufactura">Manufactura / Logística</option>
+            <option value="agencia">Agencia / Consultoría</option>
+            <option value="otro">Otra</option>
+          </select>
+        </div>
+        <div class="space-y-2">
+          <label class="text-xs font-bold uppercase tracking-widest text-zinc-400 px-1">Tamaño del Equipo</label>
+          <select id="fieldSize" class="w-full bg-surface-container-low border border-zinc-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all outline-none text-zinc-600 appearance-none cursor-pointer">
+            <option value="" disabled selected>Selecciona tamaño</option>
+            <option value="1-10">1 – 10 personas</option>
+            <option value="11-50">11 – 50 personas</option>
+            <option value="51-200">51 – 200 personas</option>
+            <option value="201-500">201 – 500 personas</option>
+            <option value="500+">500+ personas</option>
+          </select>
+        </div>
+        <!-- Row 4: Interest area -->
+        <div class="md:col-span-2 space-y-2">
+          <label class="text-xs font-bold uppercase tracking-widest text-zinc-400 px-1">¿Qué te interesa automatizar?</label>
+          <div class="flex flex-wrap gap-2 mt-1" id="interestTags">
+            <button type="button" class="interest-tag px-4 py-2 rounded-full border border-zinc-200 text-sm font-medium text-zinc-600 hover:border-[#c44e00] hover:text-[#c44e00] transition-all" data-value="soporte">Soporte al cliente</button>
+            <button type="button" class="interest-tag px-4 py-2 rounded-full border border-zinc-200 text-sm font-medium text-zinc-600 hover:border-[#c44e00] hover:text-[#c44e00] transition-all" data-value="ventas">Ventas / CRM</button>
+            <button type="button" class="interest-tag px-4 py-2 rounded-full border border-zinc-200 text-sm font-medium text-zinc-600 hover:border-[#c44e00] hover:text-[#c44e00] transition-all" data-value="cobranza">Cobranza</button>
+            <button type="button" class="interest-tag px-4 py-2 rounded-full border border-zinc-200 text-sm font-medium text-zinc-600 hover:border-[#c44e00] hover:text-[#c44e00] transition-all" data-value="datos">Análisis de datos</button>
+            <button type="button" class="interest-tag px-4 py-2 rounded-full border border-zinc-200 text-sm font-medium text-zinc-600 hover:border-[#c44e00] hover:text-[#c44e00] transition-all" data-value="contenido">Generación de contenido</button>
+            <button type="button" class="interest-tag px-4 py-2 rounded-full border border-zinc-200 text-sm font-medium text-zinc-600 hover:border-[#c44e00] hover:text-[#c44e00] transition-all" data-value="onboarding">Onboarding / RRHH</button>
+            <button type="button" class="interest-tag px-4 py-2 rounded-full border border-zinc-200 text-sm font-medium text-zinc-600 hover:border-[#c44e00] hover:text-[#c44e00] transition-all" data-value="integracion">Integraciones custom</button>
+            <button type="button" class="interest-tag px-4 py-2 rounded-full border border-zinc-200 text-sm font-medium text-zinc-600 hover:border-[#c44e00] hover:text-[#c44e00] transition-all" data-value="otro">Otro</button>
+          </div>
+        </div>
+        <!-- Row 5: Message -->
+        <div class="md:col-span-2 space-y-2">
+          <label class="text-xs font-bold uppercase tracking-widest text-zinc-400 px-1">Cuéntanos más sobre tu proyecto</label>
+          <textarea id="fieldMsg" class="w-full bg-surface-container-low border border-zinc-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all outline-none resize-none" placeholder="¿Qué problema quieres resolver? ¿Qué herramientas usas actualmente?" rows="3" required></textarea>
+          <p class="text-xs text-error hidden" id="errMsg">Por favor escribe un mensaje.</p>
+        </div>
+        <!-- Submit -->
+        <div class="md:col-span-2">
+          <button id="submitBtn" type="submit" class="w-full kinetic-gradient text-white py-4 rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-primary-container/30 transition-all flex items-center justify-center gap-3">
+            <span id="submitText">Solicitar Consultoría Gratuita</span>
+            <span id="submitIcon" class="material-symbols-outlined">send</span>
+            <span id="submitSpinner" class="hidden">
+              <svg class="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
+            </span>
+          </button>
+          <p class="text-xs text-zinc-400 text-center mt-3">Sin compromiso. Te respondemos en menos de 24 horas.</p>
+        </div>
+      </form>
+
+      <!-- Success state -->
+      <div id="formSuccess" class="hidden text-center py-12">
+        <div class="form-success">
+          <div class="w-20 h-20 mx-auto rounded-full bg-green-50 flex items-center justify-center mb-6">
+            <span class="material-symbols-outlined text-green-500 text-4xl">check_circle</span>
+          </div>
+          <h3 class="text-2xl font-bold text-zinc-900 mb-2">¡Solicitud enviada!</h3>
+          <p class="text-zinc-500 mb-6">Un consultor revisará tu caso y te contactará pronto.</p>
+          <button id="resetForm" class="text-[#c44e00] font-bold hover:underline">Enviar otra solicitud</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-12 bg-zinc-50 border-t border-zinc-200/50">
+  <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-8">
+    <div class="text-lg font-black text-zinc-900 uppercase tracking-tighter">Capibot AI</div>
+    <div class="flex flex-wrap justify-center gap-8">
+      <a class="text-zinc-500 text-sm tracking-wide uppercase hover:text-orange-600 transition-all" href="#">Privacidad</a>
+      <a class="text-zinc-500 text-sm tracking-wide uppercase hover:text-orange-600 transition-all" href="#">Términos</a>
+      <a class="text-zinc-500 text-sm tracking-wide uppercase hover:text-orange-600 transition-all" href="#">Seguridad</a>
+      <a class="text-zinc-500 text-sm tracking-wide uppercase hover:text-orange-600 transition-all" href="#contact">Contacto</a>
+    </div>
+    <div class="text-zinc-400 text-xs text-center md:text-right font-medium">
+      &copy; 2025 Capibot AI. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── Chat Simulation ───────────────────────────────────
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const chatSend = document.getElementById('chatSend');
+const typingIndicator = document.getElementById('typingIndicator');
+const statusText = document.getElementById('statusText');
+
+// Predefined demo conversation
+const demoConversation = [
+  { role: 'user', text: '¿Cómo puedo reducir mis tiempos de respuesta en atención al cliente?' },
+  { role: 'bot', text: 'Implementando un Agente de IA entrenado con tu base de conocimientos. Puedo gestionar el 80% de las consultas frecuentes de forma inmediata y 24/7.' },
+  { role: 'user', text: '¡Suena excelente! ¿Es difícil de integrar con mi CRM actual?' },
+  { role: 'bot', text: 'Para nada. Me conecto vía API con Salesforce, HubSpot o cualquier CRM que utilices en minutos. La integración es plug & play.' },
+];
+
+// Responses for user-typed messages
+const botResponses = [
+  '¡Excelente pregunta! Nuestros agentes de IA se personalizan 100% para tu industria. ¿Te gustaría agendar una demo personalizada?',
+  'Claro que sí. Podemos implementar flujos de automatización para soporte, ventas y cobranza. Todo conectado a tus herramientas actuales.',
+  'Actualmente trabajamos con empresas de retail, fintech y servicios. La implementación típica toma menos de 2 semanas.',
+  'Nuestros precios se adaptan al volumen de interacciones. Te puedo conectar con un consultor para una cotización personalizada.',
+  'Manejamos WhatsApp, Email, Web Chat y redes sociales. Todo centralizado en un solo dashboard.',
+  'La seguridad es nuestra prioridad. Cumplimos con SOC 2 y toda la data se encripta en tránsito y en reposo.',
+  'Puedo ayudarte a automatizar procesos de onboarding, soporte técnico, calificación de leads y mucho más.',
+  '¡Me encanta tu entusiasmo! Déjame tus datos en el formulario de abajo y te contactamos en menos de 24 horas.',
+];
+let responseIndex = 0;
+let demoPlayed = false;
+
+function createMessage(role, text) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'chat-msg';
+
+  if (role === 'user') {
+    wrapper.innerHTML = `
+      <div class="flex justify-end">
+        <div class="bg-primary-container text-white p-4 rounded-2xl rounded-tr-none max-w-[80%] shadow-sm">
+          <p class="text-sm">${text}</p>
+        </div>
+      </div>`;
+  } else {
+    wrapper.innerHTML = `
+      <div class="flex justify-start">
+        <div class="bg-white border border-zinc-200 text-on-surface p-4 rounded-2xl rounded-tl-none max-w-[80%] shadow-sm">
+          <p class="text-sm">${text}</p>
+        </div>
+      </div>`;
+  }
+
+  chatMessages.appendChild(wrapper);
+  // Trigger animation
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => wrapper.classList.add('show'));
+  });
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  return wrapper;
+}
+
+function showTyping() {
+  typingIndicator.classList.remove('hidden');
+  statusText.textContent = 'Escribiendo...';
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function hideTyping() {
+  typingIndicator.classList.add('hidden');
+  statusText.textContent = 'En línea';
+}
+
+async function sleep(ms) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
+async function playDemoConversation() {
+  if (demoPlayed) {
+    // Scroll to chat
+    document.getElementById('chatContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  demoPlayed = true;
+
+  for (const msg of demoConversation) {
+    if (msg.role === 'bot') {
+      showTyping();
+      await sleep(1200 + Math.random() * 800);
+      hideTyping();
+    } else {
+      await sleep(600);
+    }
+    createMessage(msg.role, msg.text);
+    await sleep(400);
+  }
+}
+
+// Auto-play demo on load
+window.addEventListener('load', () => {
+  setTimeout(() => playDemoConversation(), 800);
+});
+
+// User sends a message
+async function handleUserMessage() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+
+  chatInput.value = '';
+  createMessage('user', text);
+
+  await sleep(400);
+  showTyping();
+  await sleep(1500 + Math.random() * 1000);
+  hideTyping();
+
+  const response = botResponses[responseIndex % botResponses.length];
+  responseIndex++;
+  createMessage('bot', response);
+}
+
+chatSend.addEventListener('click', handleUserMessage);
+chatInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') handleUserMessage();
+});
+
+
+// ─── Contact Form ──────────────────────────────────────
+const contactForm = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+const submitBtn = document.getElementById('submitBtn');
+const submitText = document.getElementById('submitText');
+const submitIcon = document.getElementById('submitIcon');
+const submitSpinner = document.getElementById('submitSpinner');
+const resetFormBtn = document.getElementById('resetForm');
+
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+contactForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById('fieldName');
+  const email = document.getElementById('fieldEmail');
+  const company = document.getElementById('fieldCompany');
+  const msg = document.getElementById('fieldMsg');
+  let valid = true;
+
+  // Reset errors
+  document.querySelectorAll('[id^="err"]').forEach(el => el.classList.add('hidden'));
+  [name, email, company, msg].forEach(el => el.classList.remove('border-error'));
+
+  if (!name.value.trim()) {
+    document.getElementById('errName').classList.remove('hidden');
+    name.classList.add('border-error');
+    valid = false;
+  }
+  if (!validateEmail(email.value)) {
+    document.getElementById('errEmail').classList.remove('hidden');
+    email.classList.add('border-error');
+    valid = false;
+  }
+  if (!company.value.trim()) {
+    document.getElementById('errCompany').classList.remove('hidden');
+    company.classList.add('border-error');
+    valid = false;
+  }
+  if (!msg.value.trim()) {
+    document.getElementById('errMsg').classList.remove('hidden');
+    msg.classList.add('border-error');
+    valid = false;
+  }
+
+  if (!valid) return;
+
+  // Show loading
+  submitBtn.disabled = true;
+  submitText.textContent = 'Enviando...';
+  submitIcon.classList.add('hidden');
+  submitSpinner.classList.remove('hidden');
+
+  // Simulate send
+  await sleep(1800);
+
+  // Show success
+  contactForm.classList.add('hidden');
+  formSuccess.classList.remove('hidden');
+});
+
+resetFormBtn.addEventListener('click', () => {
+  contactForm.reset();
+  formSuccess.classList.add('hidden');
+  contactForm.classList.remove('hidden');
+  submitBtn.disabled = false;
+  submitText.textContent = 'Solicitar Consultoría Gratuita';
+  // Reset interest tags
+  document.querySelectorAll('.interest-tag').forEach(t => {
+    t.classList.remove('bg-[#c44e00]','text-white','border-[#c44e00]');
+    t.classList.add('text-zinc-600','border-zinc-200');
+  });
+  submitIcon.classList.remove('hidden');
+  submitSpinner.classList.add('hidden');
+});
+
+
+// ─── Scroll Reveal ─────────────────────────────────────
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+
+// ─── Nav scroll shadow ─────────────────────────────────
+const mainNav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  mainNav.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+
+
+// ─── Mobile menu ───────────────────────────────────────
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+
+menuToggle.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  menuToggle.textContent = open ? 'close' : 'menu';
+});
+
+function closeMobile() {
+  mobileMenu.classList.remove('open');
+  menuToggle.textContent = 'menu';
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+// ─── Interest Tags Toggle ──────────────────────────────
+document.querySelectorAll('.interest-tag').forEach(tag => {
+  tag.addEventListener('click', () => {
+    tag.classList.toggle('bg-[#c44e00]');
+    tag.classList.toggle('text-white');
+    tag.classList.toggle('border-[#c44e00]');
+    tag.classList.toggle('text-zinc-600');
+    tag.classList.toggle('border-zinc-200');
+  });
+});
+</script>
+
+</body>
+</html>
