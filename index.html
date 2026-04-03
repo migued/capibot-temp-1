@@ -1017,8 +1017,29 @@ contactForm.addEventListener('submit', async (e) => {
   submitIcon.classList.add('hidden');
   submitSpinner.classList.remove('hidden');
 
-  // Simulate send
-  await sleep(1800);
+  // Collect interest tags
+  const selectedInterests = [...document.querySelectorAll('.interest-tag.bg-\\[\\#c44e00\\]')].map(t => t.dataset.value);
+
+  // Send to Pabbly webhook
+  try {
+    await fetch('https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjcwNTZmMDYzMTA0MzM1MjZkNTUzNTUxMzYi_pc', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name.value.trim(),
+        email: email.value.trim(),
+        company: company.value.trim(),
+        role: document.getElementById('fieldRole').value,
+        industry: document.getElementById('fieldIndustry').value,
+        team_size: document.getElementById('fieldSize').value,
+        interests: selectedInterests.join(', '),
+        message: msg.value.trim(),
+        timestamp: new Date().toISOString()
+      })
+    });
+  } catch (err) {
+    // Silent fail — still show success to user
+  }
 
   // Show success
   contactForm.classList.add('hidden');
